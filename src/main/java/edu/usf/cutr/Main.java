@@ -17,17 +17,23 @@ package edu.usf.cutr;
 
 import edu.usf.cutr.io.CsvToKmlConverter;
 import edu.usf.cutr.io.FileHelper;
-import edu.usf.cutr.utils.CommandLineUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class Main {
 
   public static void main(String[] args) {
-    String inputFilePath;
+      String inputFilePath;
+
+
     try {
-      inputFilePath = CommandLineUtils.getInputFilePath(args);
+        //inputFilePath = CommandLineUtils.getInputFilePath(args);
+        inputFilePath = "/Users/Jennysanchez/Documents/Summer_Research/csv_files";
+
     } catch (Exception e) {
       System.err.println("input io cannot be empty");
       return;
@@ -35,11 +41,20 @@ public class Main {
 
     List<File> csvFiles = FileHelper.getAllFilesByPrefix(inputFilePath, "csv");
 
-    File kmlFile = new File(inputFilePath + "/test.kml");
+      PrintWriter writer = null;
+      int n = 1;
     for (File file: csvFiles) {
-      CsvToKmlConverter csvToKmlConverter = new CsvToKmlConverter(kmlFile);
-      File kml = csvToKmlConverter.convertCsvToKml(file);
-      csvToKmlConverter.appendToFile(kml);
+
+        try {
+            writer = new PrintWriter("test" + n++ + ".kml", "UTF-8");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        CsvToKmlConverter csvToKmlConverter = new CsvToKmlConverter(writer);
+        File kml = csvToKmlConverter.convertCsvToKml(file, writer);
     }
 
   }

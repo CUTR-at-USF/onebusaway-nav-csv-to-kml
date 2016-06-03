@@ -15,24 +15,75 @@
  */
 package edu.usf.cutr.io;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+
 
 public class CsvToKmlConverter {
 
-  private File mOutputFile;
+    private File mOutputFile;
+    private File convertedFile = null;
 
-  public CsvToKmlConverter(File mOutputFile) {
-    mOutputFile = mOutputFile;
-  }
+    public CsvToKmlConverter(PrintWriter mOutputFile) {
+        mOutputFile = mOutputFile;
+    }
 
-  public File convertCsvToKml (File csv) {
-    File convertedFile = null;
-    // TODO: do conversion
+    public File convertCsvToKml(File csv, PrintWriter kml) {
 
-    return convertedFile;
-  }
+        BufferedReader reader = null;
+        String line = "";
+        String csvSeparator = ",";
+        KmlFileGenerator kmlFileGenerator = new KmlFileGenerator(kml);
+        int n = 1;
 
-  public void appendToFile(File file) {
-    // TODO: append the created kml file to output
-  }
+        try {
+            int i = 1;
+            reader = new BufferedReader(new FileReader(csv));
+            String[] attribute = null;
+            ArrayList<String[]> coordinates = new ArrayList<String[]>();
+
+            while ((line = reader.readLine()) != null) {
+
+                attribute = line.split(csvSeparator);
+
+                if (attribute.length < 9) {
+                    kmlFileGenerator.appendResult(attribute, kml);
+                    coordinates.add(attribute);
+                } else if (i == 2) {
+                    kmlFileGenerator.appendStart(attribute, kml);
+                    coordinates.add(attribute);
+                } else {
+                    kmlFileGenerator.appendResult3(attribute, kml);
+                    coordinates.add(attribute);
+                }
+                i++;
+            }
+            kmlFileGenerator.appendStartLineCoordinates(kml);
+
+            for (String[] lineCoordinates : coordinates) {
+                kmlFileGenerator.appendLineCoordinates(lineCoordinates, kml);
+
+            }
+
+
+            kmlFileGenerator.appendFinal(kml);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println("Done");
+        kmlFileGenerator.close(kml);
+        return convertedFile;
+    }
+
 }
