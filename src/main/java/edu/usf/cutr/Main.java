@@ -17,6 +17,7 @@ package edu.usf.cutr;
 
 import edu.usf.cutr.io.CsvToKmlConverter;
 import edu.usf.cutr.io.FileHelper;
+import edu.usf.cutr.utils.CommandLineUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,8 +32,8 @@ public class Main {
 
 
     try {
-        //inputFilePath = CommandLineUtils.getInputFilePath(args);
-        inputFilePath = "/Users/Jennysanchez/Documents/Summer_Research/csv_files";
+
+        inputFilePath = CommandLineUtils.getInputFilePath(args);
 
     } catch (Exception e) {
       System.err.println("input io cannot be empty");

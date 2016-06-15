@@ -35,6 +35,7 @@ public class CsvToKmlConverter {
         String csvSeparator = ",";
         KmlFileGenerator kmlFileGenerator = new KmlFileGenerator(kml);
         int n = 1;
+        int j = 1;
 
         try {
             int i = 1;
@@ -61,8 +62,19 @@ public class CsvToKmlConverter {
             kmlFileGenerator.appendStartLineCoordinates(kml);
 
             for (String[] lineCoordinates : coordinates) {
-                kmlFileGenerator.appendLineCoordinates(lineCoordinates, kml);
 
+                if (n > 1) {
+                    kmlFileGenerator.appendLineCoordinates(lineCoordinates, kml);
+                }
+                n++;
+            }
+
+            for (String[] lineCoordinates : coordinates) {
+
+                if (j == 1) {
+                    kmlFileGenerator.appendEndLineCoordinates(lineCoordinates, kml);
+                }
+                j++;
             }
 
 
