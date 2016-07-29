@@ -77,7 +77,7 @@ public class KmlFileGenerator {
         writer.write("\n</LabelStyle>");
         writer.write("\n<IconStyle>");
         writer.write("\n<Icon>");
-        writer.write("\n<href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href>");
+        writer.write("\n<href>http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png</href>");
         writer.write("\n</Icon>");
         writer.write("\n</IconStyle>");
         writer.write("\n</Style>");
@@ -88,7 +88,7 @@ public class KmlFileGenerator {
         writer.write("\n<IconStyle>");
         writer.write("\n<scale>0.5</scale>");
         writer.write("\n<Icon>");
-        writer.write("\n<href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href>");
+        writer.write("\n<href>http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png</href>");
         writer.write("\n</Icon>");
         writer.write("\n</IconStyle>");
         writer.write("\n</Style>");
@@ -192,13 +192,13 @@ public class KmlFileGenerator {
 
     public void appendLineCoordinates(String[] attributes, PrintWriter writer) {
         writer.write(attributes[6] + "," + attributes[5] + " ");
-        System.out.println("longitude is: " + attributes[5] + " latitude is: " + attributes[6]);
+        // System.out.println("longitude is: " + attributes[5] + " latitude is: " + attributes[6]);
     }
 
     public void appendEndLineCoordinates(String[] attributes, PrintWriter writer) {
         writer.write(attributes[3] + "," + attributes[2] + " " + "]]></coordinates>" +
                 "\n</LineString></Placemark>");
-        System.out.println("longitude is: " + attributes[3] + " latitude is: " + attributes[2]);
+        //System.out.println("longitude is: " + attributes[3] + " latitude is: " + attributes[2]);
     }
 
     public void appendResult(String[] attributes, PrintWriter writer) {
@@ -274,10 +274,10 @@ public class KmlFileGenerator {
         writer.write("\n<br /><strong> Provider:</strong> " + attributes[12] + "]]>");
         writer.write("\n</description>");
 
-        if (attributes[1].equals("true") && i == 1) {
+        if ((attributes[1].equals("true") && i == 1) || (attributes[1].equals("TRUE") && i == 1)) {
             writer.write("\n<styleUrl>#RedPinStyleMap</styleUrl>");
             i++;
-        } else if (attributes[2].equals("true") && j == 1) {
+        } else if ((attributes[2].equals("true") && j == 1) || (attributes[2].equals("TRUE") && j == 1)) {
             writer.write("\n<styleUrl>#GreenPinStyleMap</styleUrl>");
             j++;
         } else
