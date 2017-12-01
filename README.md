@@ -1,6 +1,12 @@
 # tad-csv-to-kml
 Converts a trip recorded using TAD from CSV format to KML, so it can be visualized using [Google Earth](https://www.google.com/earth/).
 
+## Usage
+
+Run the `Main.java main()` method, with the command line parameter of the path to the CSV file(s).
+
+For example, if your CSV files are in `c:\test files\`, you would pass `"c:\test files\"`.
+
 ## CSV file format
 
 When recording data using TAD, the log file is a CSV file written to the "TADLog" folder on your external storage root directory. The filename format is `<TestID>-<Date/time of test>.csv`. For example, `1-Thu, Aug 25 2016, 04:20 PM.csv`. 
