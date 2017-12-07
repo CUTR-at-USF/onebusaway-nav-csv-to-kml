@@ -36,11 +36,11 @@ public class Main {
         inputFilePath = CommandLineUtils.getInputFilePath(args);
 
     } catch (Exception e) {
-      System.err.println("input io cannot be empty");
+      System.err.println("input io cannot be empty - " + e);
       return;
     }
 
-    List<File> csvFiles = FileHelper.getAllFilesByPrefix(inputFilePath, "csv");
+    List<File> csvFiles = FileHelper.getAllFilesByExtension(inputFilePath, "csv");
 
       PrintWriter writer = null;
       int n = 1;

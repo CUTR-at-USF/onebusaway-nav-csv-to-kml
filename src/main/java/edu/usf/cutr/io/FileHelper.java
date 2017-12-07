@@ -21,14 +21,14 @@ import java.util.List;
 
 public class FileHelper {
 
-  public static List<File> getAllFilesByPrefix(String path, String prefix) {
+  public static List<File> getAllFilesByExtension(String path, String extension) {
 
     List<File> files = new ArrayList<File>();
 
     final File folder = new File(path);
 
     for (final File fileEntry : folder.listFiles()) {
-      if (!fileEntry.isDirectory() && fileEntry.getName().contains(prefix)) {
+      if (!fileEntry.isDirectory() && fileEntry.getName().contains(extension)) {
         files.add(fileEntry);
       }
     }
