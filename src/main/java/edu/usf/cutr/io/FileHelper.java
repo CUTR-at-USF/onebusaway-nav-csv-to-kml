@@ -28,7 +28,7 @@ public class FileHelper {
     final File folder = new File(path);
 
     for (final File fileEntry : folder.listFiles()) {
-      if (!fileEntry.isDirectory() && fileEntry.getName().contains(extension)) {
+      if (!fileEntry.isDirectory() && fileEntry.getName().endsWith(extension)) {
         files.add(fileEntry);
       }
     }
