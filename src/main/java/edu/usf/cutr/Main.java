@@ -36,7 +36,7 @@ public class Main {
         inputFilePath = CommandLineUtils.getInputFilePath(args);
 
     } catch (Exception e) {
-      System.err.println("input io cannot be empty - " + e);
+      System.err.println("Command line parameter for input directory (-i ...) cannot be empty - " + e);
       return;
     }
 
