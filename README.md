@@ -3,9 +3,9 @@ Converts a trip recorded using TAD from CSV format to KML, so it can be visualiz
 
 ## Usage
 
-Run the `Main.java main()` method, with the command line parameter of the path to the CSV file(s).
+Run the `Main.java main()` method, with the command line parameter `-i` of the path to the CSV file(s).
 
-For example, if your CSV files are in `c:\test files\`, you would pass `"c:\test files\"`.
+For example, if your CSV files are in `c:\test files\`, you would pass `-i "c:\test files\"`.
 
 ## CSV file format
 
