@@ -38,7 +38,7 @@ public class CommandLineUtils {
         if (cmd.hasOption("i")) {
             filePath = cmd.getOptionValue("i");
         } else {
-            throw new FileNotFoundException("Agency mapping io not found.");
+            throw new FileNotFoundException("CSV file path not provided");
         }
         return filePath;
     }
