@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 University of South Florida
+ * Copyright 2016-2018 University of South Florida
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.usf.cutr.io;
+package edu.usf.cutr.onebusaway.nav.utils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileHelper {
+public class FileUtils {
 
-  public static List<File> getAllFilesByExtension(String path, String extension) {
+    public static List<File> getAllFilesByExtension(String path, String extension) {
+        List<File> files = new ArrayList<File>();
+        final File folder = new File(path);
 
-    List<File> files = new ArrayList<File>();
+        for (final File fileEntry : folder.listFiles()) {
+            if (!fileEntry.isDirectory() && fileEntry.getName().endsWith(extension)) {
+                files.add(fileEntry);
+            }
+        }
 
-    final File folder = new File(path);
-
-    for (final File fileEntry : folder.listFiles()) {
-      if (!fileEntry.isDirectory() && fileEntry.getName().endsWith(extension)) {
-        files.add(fileEntry);
-      }
+        return files;
     }
-
-    return files;
-  }
 }

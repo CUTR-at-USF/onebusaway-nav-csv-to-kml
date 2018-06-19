@@ -1,5 +1,7 @@
-# tad-csv-to-kml
-Converts a trip recorded using TAD from CSV format to KML, so it can be visualized using [Google Earth](https://www.google.com/earth/).
+# onebusaway-nav-csv-to-kml
+Converts a trip recorded using the OneBusAway navigation feature from CSV format to KML, so it can be visualized using [Google Earth](https://www.google.com/earth/).
+
+A work-in-progress pull request for destination alerts for OneBusAway Android is at https://github.com/OneBusAway/onebusaway-android/pull/873.
 
 ## Usage
 
@@ -11,11 +13,33 @@ Note that you should *NOT* include a final `\` at the end of the file path.
 
 ## CSV file format
 
-When recording data using TAD, the log file is a CSV file written to the "TADLog" folder on your external storage root directory. The filename format is `<TestID>-<Date/time of test>.csv`. For example, `1-Thu, Aug 25 2016, 04:20 PM.csv`. 
+When recording data using OneBusAway, the log file is a CSV file written to the "ObaNavLog" folder on your external storage root directory. The filename format is `<TestID>-<Date/time of test>.csv`. For example, `1-Thu, Aug 25 2016, 04:20 PM.csv`. 
   
-The first line of the file includes the following information in the same order is going to be presented: The trip ID, the destination Stop ID, the latitude of the destination, the longitude of the destination, stop ID of the Stop before the final Stop,the latitude of the stop before the final stop, and the longitude of the stop before the last stop.
-  
-Starting from the second line, the first column contains the time in nanoseconds since the application started, the second column contains the time in UTC, the third column contains the latitude, the fourth column contains the longitude, the fifth column contains the altitude, the sixth column contains the speed, the seventh column contains the Bearing, the eight column contains the accuracy, the ninth column contains the satellites, the tenth column contains the provider.
+The first line of the file includes the following information in this order (delimited by commas): 
+
+1. trip ID
+1. destination Stop ID
+1. latitude of the destination
+1. longitude of the destination
+1. stop ID of the Stop before the final Stop
+1. latitude of the stop before the final stop
+1. longitude of the stop before the last stop
+
+Starting from the second line, here are the columns that contain the position data:
+
+1. coordinateID - unique ID for each location fix in the file
+1. getReadyFlag - true if the "Get Ready" alert has been announced to the user, false if it has not
+1. pullTheCordNowFlag - true if the "Pull the Cord Now" alert has been announced to the user, false if it has not
+1. the time in nanoseconds since the application started
+1. the time in UTC
+1. latitude
+1. longitude
+1. altitude
+1. speed
+1. bearing
+1. horizontal accuracy
+1. number of satellites used in fix
+1. location provider
 
 For example:
 

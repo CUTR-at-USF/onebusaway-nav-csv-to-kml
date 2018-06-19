@@ -1,21 +1,21 @@
 /*
-  * Copyright 2016 University of South Florida
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *        http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+ * Copyright 2016-2018 University of South Florida
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 
-package edu.usf.cutr.io;
+package edu.usf.cutr.onebusaway.nav.io;
 
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -23,15 +23,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by Jennysanchez on 5/26/2016.
+ * Creates a KML file that is compatible with Google Earth
  */
 public class KmlFileGenerator {
 
     private int i = 1;
     private int j = 1;
 
-    public KmlFileGenerator(PrintWriter kmlFile) {
-        init(kmlFile);
+    public KmlFileGenerator(PrintWriter printWriter) {
+        init(printWriter);
     }
 
     private void init(PrintWriter writer) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 University of South Florida
+ * Copyright 2016-2018 University of South Florida
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.usf.cutr.io;
+package edu.usf.cutr.onebusaway.nav.io;
 
 import java.io.*;
 import java.util.ArrayList;
 
-
+/**
+ * Converts a CSV file with the format described in the README to a KML file viewable in Google Earth
+ */
 public class CsvToKmlConverter {
 
-    private File mOutputFile;
-    private File convertedFile = null;
-
-    public CsvToKmlConverter(PrintWriter mOutputFile) {
-        mOutputFile = mOutputFile;
+    public CsvToKmlConverter() {
     }
 
-    public File convertCsvToKml(File csv, PrintWriter kml) {
-
+    /**
+     * Takes the provided CSV file and converts and writes it to a KML file using the provided PrintWriter
+     *
+     * @param csv         CSV file to convert to KML format
+     * @param printWriter PrintWriter to be used to write the KML file
+     */
+    public void convertCsvToKml(File csv, PrintWriter printWriter) {
         BufferedReader reader = null;
         String line = "";
         String csvSeparator = ",";
-        KmlFileGenerator kmlFileGenerator = new KmlFileGenerator(kml);
+        KmlFileGenerator kmlFileGenerator = new KmlFileGenerator(printWriter);
         int n = 1;
         int j = 1;
 
@@ -48,38 +51,34 @@ public class CsvToKmlConverter {
                 attribute = line.split(csvSeparator);
 
                 if (attribute.length < 9) {
-                    kmlFileGenerator.appendResult(attribute, kml);
+                    kmlFileGenerator.appendResult(attribute, printWriter);
                     coordinates.add(attribute);
                 } else if (i == 2) {
-                    kmlFileGenerator.appendStart(attribute, kml);
+                    kmlFileGenerator.appendStart(attribute, printWriter);
                     coordinates.add(attribute);
                 } else {
-                    kmlFileGenerator.appendResult3(attribute, kml);
+                    kmlFileGenerator.appendResult3(attribute, printWriter);
                     coordinates.add(attribute);
                 }
                 i++;
             }
-            kmlFileGenerator.appendStartLineCoordinates(kml);
+            kmlFileGenerator.appendStartLineCoordinates(printWriter);
 
             for (String[] lineCoordinates : coordinates) {
-
                 if (n > 1) {
-                    kmlFileGenerator.appendLineCoordinates(lineCoordinates, kml);
+                    kmlFileGenerator.appendLineCoordinates(lineCoordinates, printWriter);
                 }
                 n++;
             }
 
             for (String[] lineCoordinates : coordinates) {
-
                 if (j == 1) {
-                    kmlFileGenerator.appendEndLineCoordinates(lineCoordinates, kml);
+                    kmlFileGenerator.appendEndLineCoordinates(lineCoordinates, printWriter);
                 }
                 j++;
             }
 
-
-            kmlFileGenerator.appendFinal(kml);
-
+            kmlFileGenerator.appendFinal(printWriter);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -94,8 +93,6 @@ public class CsvToKmlConverter {
             }
         }
         System.out.println("Done");
-        kmlFileGenerator.close(kml);
-        return convertedFile;
+        kmlFileGenerator.close(printWriter);
     }
-
 }
