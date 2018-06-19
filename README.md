@@ -11,7 +11,7 @@ For example, if your CSV files are in `c:\test files`, you would pass `-i "c:\te
 
 Note that you should *NOT* include a final `\` at the end of the file path.
 
-## CSV file format
+## Input CSV file format
 
 When recording data using OneBusAway, the log file is a CSV file written to the "ObaNavLog" folder on your external storage root directory. The filename format is `<TestID>-<Date/time of test>.csv`. For example, `1-Thu, Aug 25 2016, 04:20 PM.csv`. 
   
