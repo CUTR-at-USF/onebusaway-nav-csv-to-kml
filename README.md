@@ -1,4 +1,4 @@
-# onebusaway-nav-csv-to-kml
+# onebusaway-nav-csv-to-kml [![Build Status](https://travis-ci.org/CUTR-at-USF/onebusaway-nav-csv-to-kml.svg?branch=master)](https://travis-ci.org/CUTR-at-USF/onebusaway-nav-csv-to-kml)
 Converts a trip recorded using the OneBusAway navigation feature from CSV format to KML, so it can be visualized using [Google Earth](https://www.google.com/earth/).
 
 A work-in-progress pull request for destination alerts for OneBusAway Android is at https://github.com/OneBusAway/onebusaway-android/pull/873.
