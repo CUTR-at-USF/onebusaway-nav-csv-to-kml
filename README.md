@@ -53,3 +53,19 @@ Hillsborough Area Regional Transit_144477,Hillsborough Area Regional Transit_649
 5,FALSE,FALSE,1341291856798,1466618944000,28.051546,-82.416175,2,14.25,359.899994,5,11,gps
 ...
 ~~~
+
+## KML output
+
+A KML file compatible with [Google Earth](https://www.google.com/earth/) will be generated for each CSV file matching the above format in the provided directory.
+
+The KML file will contain the following markers, typically encountered in this order when looking at a trip from start to finish:
+
+* Yellow markers - Real-time locations recorded by the app (e.g., GPS fixes)
+* Red marker - The real-time location that triggered the "Get ready" alert
+* Bus stop icon with title "Previous stop" - the transit stop prior to the destination stop
+* Green marker - The real-time location that triggered the "Pull the cord now" alert
+* Bus stop icon with title "End" - The destination stop of the user where they indicated they wanted to exit the transit vehicle
+
+Here's a sample screenshot of Google Earth showing these markers (from `nav_trip11.csv` in the OneBusAway Android project):
+
+ ![image](https://user-images.githubusercontent.com/928045/41626682-0af1e62e-73eb-11e8-8524-b55ebc17b433.png)
