@@ -29,10 +29,10 @@ public class CsvToKmlConverter {
     /**
      * Takes the provided CSV file and converts and writes it to a KML file using the provided PrintWriter
      *
-     * @param csv         CSV file to convert to KML format
+     * @param csvFile         CSV file to convert to KML format
      * @param printWriter PrintWriter to be used to write the KML file
      */
-    public void convertCsvToKml(File csv, PrintWriter printWriter) {
+    public void convertCsvToKml(File csvFile, PrintWriter printWriter) {
         BufferedReader reader = null;
         String line = "";
         String csvSeparator = ",";
@@ -42,7 +42,7 @@ public class CsvToKmlConverter {
 
         try {
             int i = 1;
-            reader = new BufferedReader(new FileReader(csv));
+            reader = new BufferedReader(new FileReader(csvFile));
             String[] attribute = null;
             ArrayList<String[]> coordinates = new ArrayList<String[]>();
 
@@ -92,7 +92,7 @@ public class CsvToKmlConverter {
                 }
             }
         }
-        System.out.println("Done");
+        System.out.println("Wrote KML for " + csvFile.getName());
         kmlFileGenerator.close(printWriter);
     }
 }
